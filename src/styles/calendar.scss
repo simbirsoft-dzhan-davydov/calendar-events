@@ -1,0 +1,124 @@
+@import "./colors.scss";
+
+.calendar {
+  padding: 20px;
+  border-radius: 8px;
+  user-select: none;
+  background: $light;
+  &-header {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    button {
+      &:hover {
+        svg {
+          fill: $primary;
+        }
+      }
+      svg {
+        width: 10px;
+        height: 10px;
+        transition: .2s;
+        fill: $dark-gray;
+      }
+    }
+    .title {
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+  }
+  &-events {
+    .week-days {
+      display: grid;
+      grid-template-columns: repeat(7, 120px);
+      grid-gap: 4px;
+      align-items: center;
+      text-transform: uppercase;
+      height: 36px;
+      .item {
+        text-align: right;
+        font-size: 12px;
+        font-weight: 500;
+        padding: 5px;
+      }
+    }
+    .daySquare {
+      display: grid;
+      grid-template-columns: repeat(7, 120px);
+      grid-gap: 4px;
+      background: $light-gray;
+      padding: 2px;
+      border-radius: 4px;
+      .item {
+        padding: 5px;
+        text-align: right;
+        font-size: 14px;
+        border-radius: 4px;
+        min-height: 80px;
+        background: $light;
+        &:nth-child(7n), &:nth-child(7n-1) {
+          background: #fff;
+          .day-number {
+            color: $primary;
+          }
+        }
+        &.today {
+          border: 1px solid $dark-gray;
+          .day-number {
+            color: $accent;
+          }
+        }
+        &.disabled {
+          background: $disabled;
+          .day-number {
+            color: $dark-gray;
+          }
+        }
+        .day-number {
+          font-weight: 500;
+          margin-bottom: 5px;
+        }
+        .event {
+          text-align: center;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          cursor: pointer;
+          &:not(:first-child) {
+            margin-top: 2px;
+          }
+          span {
+            display: block;
+            border-radius: 4px;
+            padding: 2px 5px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            opacity: .8;
+            transition: .2s;
+            &.design {
+              background: $secondary-light;
+              color: $secondary;
+            }
+            &.frontend {
+              background: $accent-light;
+              color: $accent;
+            }
+            &.backend {
+              background: $warning-light;
+              color: $warning;
+            }
+          }
+          &:hover {
+            position: relative;
+            overflow: visible;
+            z-index: 1;
+            span {
+              display: inline-flex;
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
